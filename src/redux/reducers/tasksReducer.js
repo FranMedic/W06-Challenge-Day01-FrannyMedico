@@ -8,6 +8,10 @@ const tasksReducer = (tasks = [], action) => {
       newTasks = [...action.tasks];
       break;
 
+    case actionTypes.createTask:
+      newTasks = [...tasks, action.task];
+      break;
+
     default:
       break;
   }
