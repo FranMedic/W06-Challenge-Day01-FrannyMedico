@@ -1,28 +1,43 @@
-import { createTaskAction, loadTasksAction } from "../actions/actionCreators";
+import {
+  createTaskAction,
+  deleteTaskAction,
+  loadTasksAction,
+} from "../actions/actionCreators";
+
+const urlApi = "https://todo-list-franny-medico.herokuapp.com/tasks";
 
 export const loadTasksThunk = () => {
   return async (dispatch) => {
-    const response = await fetch(
-      "https://todo-list-franny-medico.herokuapp.com/tasks"
-    );
+    const response = await fetch(urlApi);
     const tasks = await response.json();
     dispatch(loadTasksAction(tasks));
   };
 };
-export const createTaskThunks = (task) => {
+export const createTaskThunk = (task) => {
   return async (dispatch) => {
-    const response = await fetch(
-      "https://todo-list-franny-medico.herokuapp.com/tasks",
-      {
-        method: "POST",
-        body: JSON.stringify(task),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
+    const response = await fetch(urlApi, {
+      method: "POST",
+      body: JSON.stringify(task),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
     const newTask = await response.json();
 
     dispatch(createTaskAction(newTask));
+  };
+};
+
+export const deleteTaskThunk = (id) => {
+  return async (dispatch) => {
+    const response = await fetch(`${urlApi}/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    if (response.ok) {
+      dispatch(deleteTaskAction(id));
+    }
   };
 };

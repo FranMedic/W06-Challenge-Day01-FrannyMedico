@@ -12,6 +12,21 @@ const tasksReducer = (tasks = [], action) => {
       newTasks = [...tasks, action.task];
       break;
 
+    case actionTypes.deleteTask:
+      newTasks = tasks.filter((task) => task.id !== action.id);
+      break;
+
+    case actionTypes.editTask:
+      newTasks = tasks.map((task) =>
+        task.id === action.task.id
+          ? {
+              ...task,
+              ...action.task,
+            }
+          : task
+      );
+      break;
+
     default:
       break;
   }
