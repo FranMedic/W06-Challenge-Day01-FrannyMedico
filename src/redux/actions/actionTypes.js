@@ -4,6 +4,7 @@ const actionTypes = {
   editTask: "EDIT_TASK",
   deleteTask: "DELETE_TASK",
   toggleTask: "TOGGLE_TASK",
+  loadCurrentTask: "LOAD_CURRENT_TASK",
 };
 
 export default actionTypes;

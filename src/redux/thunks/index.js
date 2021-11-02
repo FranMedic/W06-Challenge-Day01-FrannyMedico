@@ -2,6 +2,7 @@ import {
   createTaskAction,
   deleteTaskAction,
   loadTasksAction,
+  updateTaskAction,
 } from "../actions/actionCreators";
 
 const urlApi = "https://todo-list-franny-medico.herokuapp.com/tasks";
@@ -39,5 +40,20 @@ export const deleteTaskThunk = (id) => {
     if (response.ok) {
       dispatch(deleteTaskAction(id));
     }
+  };
+};
+
+export const updateTaskThunk = (task) => {
+  return async (dispatch) => {
+    const response = await fetch(`${urlApi}/${task.id}`, {
+      method: "PUT",
+      body: JSON.stringify(task),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const newTask = await response.json();
+
+    dispatch(updateTaskAction(newTask));
   };
 };
