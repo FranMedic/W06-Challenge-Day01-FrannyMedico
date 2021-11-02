@@ -3,6 +3,7 @@ const actionTypes = {
   createTask: "CREATE_TASK",
   editTask: "EDIT_TASK",
   deleteTask: "DELETE_TASK",
+  toggleTask: "TOGGLE_TASK",
 };
 
 export default actionTypes;

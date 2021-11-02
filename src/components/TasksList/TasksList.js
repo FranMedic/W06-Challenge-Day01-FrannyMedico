@@ -14,12 +14,9 @@ const TasksList = () => {
       <h2>Let's Do It !</h2>
       <ul>
         {tasks.map((task) => (
-          <TaskCard
-            key={task.id}
-            id={task.id}
-            name={task.name}
-            done={task.done}
-          />
+          <li key={task.id}>
+            <TaskCard task={task} />
+          </li>
         ))}
       </ul>
     </>

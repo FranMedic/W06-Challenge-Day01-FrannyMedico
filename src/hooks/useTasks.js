@@ -1,7 +1,11 @@
 import { useCallback } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { createTaskThunks, loadTasksThunk } from "../redux/thunks";
+import {
+  createTaskThunk,
+  deleteTaskThunk,
+  loadTasksThunk,
+} from "../redux/thunks";
 
 const useTasks = () => {
   const tasks = useSelector((store) => store.tasks);
@@ -14,7 +18,14 @@ const useTasks = () => {
 
   const createTask = useCallback(
     (task) => {
-      dispatch(createTaskThunks(task));
+      dispatch(createTaskThunk(task));
+    },
+    [dispatch]
+  );
+
+  const deleteTask = useCallback(
+    (id) => {
+      dispatch(deleteTaskThunk(id));
     },
     [dispatch]
   );
@@ -23,6 +34,7 @@ const useTasks = () => {
     tasks,
     loadtasks,
     createTask,
+    deleteTask,
   };
 };
 
