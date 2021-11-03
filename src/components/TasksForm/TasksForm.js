@@ -1,15 +1,33 @@
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import useTasks from "../../hooks/useTasks";
 
 const TasksForm = () => {
-  const { createTask } = useTasks();
+  const { createTask, loadCurrentTask } = useTasks();
 
-  const initialValues = {
-    name: "",
-    state: false,
-  };
+  const initialValues = useMemo(
+    () => ({
+      name: "",
+      state: false,
+    }),
+    []
+  );
+
+  const currentTask = useSelector((store) => store.currentTask);
 
   const [taskData, setTaskData] = useState(initialValues);
+  const [textButton, setTextButton] = useState("");
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (currentTask.isEditing) {
+      setTaskData(currentTask.taskData);
+      setTextButton("Edit");
+    } else {
+      setTaskData(initialValues);
+      setTextButton("Create");
+    }
+  }, [currentTask.isEditing, currentTask.taskData, initialValues]);
 
   const onChangeData = (event) => {
     setTaskData({
@@ -20,7 +38,12 @@ const TasksForm = () => {
 
   const onSubmit = (event) => {
     event.preventDefault();
-    createTask(taskData);
+    if (currentTask.isEditing) {
+      dispatch(loadCurrentTask(taskData));
+    } else {
+      createTask(taskData);
+    }
+    setTaskData(initialValues);
   };
 
   return (
@@ -37,7 +60,7 @@ const TasksForm = () => {
           name="taskTitle"
         />
         <button type="submit" value="Submit">
-          Create
+          {textButton}
         </button>
       </form>
     </>

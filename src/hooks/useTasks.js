@@ -1,6 +1,7 @@
 import { useCallback } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
+import { loadCurrentTaskAction } from "../redux/actions/actionCreators";
 import {
   createTaskThunk,
   deleteTaskThunk,
@@ -38,12 +39,17 @@ const useTasks = () => {
     [dispatch]
   );
 
+  const loadCurrentTask = (task) => {
+    dispatch(loadCurrentTaskAction(task));
+  };
+
   return {
     tasks,
     loadtasks,
     createTask,
     deleteTask,
     updateTask,
+    loadCurrentTask,
   };
 };
 

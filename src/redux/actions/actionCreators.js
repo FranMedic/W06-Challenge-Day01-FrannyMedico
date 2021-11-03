@@ -20,8 +20,8 @@ export const updateTaskAction = (task) => ({
   task,
 });
 
-export const loadCurrentTask = (id) => ({
+export const loadCurrentTaskAction = (task) => ({
   type: actionTypes.loadCurrentTask,
-  id,
+  task,
 });
 //export const toggleTaskAction =())>

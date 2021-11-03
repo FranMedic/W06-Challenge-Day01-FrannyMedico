@@ -1,17 +1,19 @@
 import actionTypes from "../actions/actionTypes";
 
 const currentTaskReducer = (
-  currenTask = { task: {}, isEditing: false },
+  currentTask = { task: {}, isEditing: false },
   action
 ) => {
   let newCurrentTask;
   switch (action.type) {
     case actionTypes.loadCurrentTask:
+      console.log("hola");
       newCurrentTask = { task: action.task, isEditing: true };
+
       break;
 
     default:
-      newCurrentTask = currenTask;
+      newCurrentTask = currentTask;
   }
   return newCurrentTask;
 };
