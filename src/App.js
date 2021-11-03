@@ -5,9 +5,11 @@ import TasksList from "./components/TasksList/TasksList";
 function App() {
   return (
     <>
-      <h1>What to do today?</h1>
-      <TasksList />
-      <TasksForm />
+      <div className="container">
+        <h1>What to do today?</h1>
+        <TasksList />
+        <TasksForm />
+      </div>
     </>
   );
 }

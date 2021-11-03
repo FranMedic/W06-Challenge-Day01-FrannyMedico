@@ -15,9 +15,13 @@ export const deleteTaskAction = (id) => ({
   id,
 });
 
-export const updateTaskAction = (id) => ({
+export const updateTaskAction = (task) => ({
   type: actionTypes.editTask,
-  id,
+  task,
 });
 
+export const loadCurrentTaskAction = (task) => ({
+  type: actionTypes.loadCurrentTask,
+  task,
+});
 //export const toggleTaskAction =())>
