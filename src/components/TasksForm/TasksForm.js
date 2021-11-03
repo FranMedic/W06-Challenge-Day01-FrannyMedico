@@ -59,7 +59,7 @@ const TasksForm = () => {
           onChange={onChangeData}
           name="taskTitle"
         />
-        <button type="submit" value="Submit">
+        <button className="btn btn-info" type="submit" value="Submit">
           {textButton}
         </button>
       </form>

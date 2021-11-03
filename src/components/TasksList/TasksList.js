@@ -19,19 +19,21 @@ const TasksList = () => {
 
   return (
     <>
-      <h2>Let's Do It !</h2>
+      <section className="row">
+        <h2>Let's Do It !</h2>
 
-      <ul className="list-unstyled">
-        {tasks.map((task) => (
-          <li key={task.id}>
-            <TaskCard
-              task={task}
-              onDelete={() => onDeleteTask(task.id)}
-              onUpdate={() => onUpdateTask(task)}
-            />
-          </li>
-        ))}
-      </ul>
+        <ul className="list-unstyled">
+          {tasks.map((task) => (
+            <li className="row" key={task.id}>
+              <TaskCard
+                task={task}
+                onDelete={() => onDeleteTask(task.id)}
+                onUpdate={() => onUpdateTask(task)}
+              />
+            </li>
+          ))}
+        </ul>
+      </section>
     </>
   );
 };
